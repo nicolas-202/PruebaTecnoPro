@@ -1,0 +1,118 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>{% extends "base.html" %}
+{% block title %}Catálogo{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">Catálogo de Productos</h2>
+    <form method="GET" action="{{ url_for('catalog') }}" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label for="category" class="form-label">Categoría</label>
+            <select class="form-select" id="category" name="category">
+                <option value="">Todas</option>
+                <option value="laptops">Laptops</option>
+                <option value="desktops">Computadoras de Escritorio</option>
+                <option value="accessories">Accesorios</option>
+                <option value="parts">Repuestos</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="price_min" class="form-label">Precio Mínimo</label>
+            <input type="number" class="form-control" id="price_min" name="price_min">
+        </div>
+        <div class="col-md-3">
+            <label for="price_max" class="form-label">Precio Máximo</label>
+            <input type="number" class="form-control" id="price_max" name="price_max">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100 mt-4">Filtrar</button>
+        </div>
+    </form>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card product-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncate(100) }}</p>
+                    <p class="card-text"><strong>Precio:</strong> ${{ product.price }}</p>
+                    <p class="card-text"><strong>Categoría:</strong> {{ product.category }}</p>
+                    <form method="POST" action="{{ url_for('cart') }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <div class="mb-3">
+                            <label for="quantity_{{ product.id }}" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="quantity_{{ product.id }}" name="quantity" value="1" min="1">
+                        </div>
+                        <button type="submit" class="btn btn-success">Añadir al Carrito</button>
+                    </form>
+                    <hr>
+                    <h6>Valoraciones</h6>
+                    {% for rating in product.ratings %}
+                    <p><strong>{{ rating.user.username }}</strong> ({{ rating.rating }} estrellas): {{ rating.comment }}</p>
+                    {% endfor %}
+                    {% if session.user_id %}
+                    <form method="POST" action="{{ url_for('catalog') }}">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <div class="mb-3">
+                            <label for="rating_{{ product.id }}" class="form-label">Puntuación</label>
+                            <select class="form-select" id="rating_{{ product.id }}" name="rating" required>
+                                <option value="1">1 estrella</option>
+                                <option value="2">2 estrellas</option>
+                                <option value="3">3 estrellas</option>
+                                <option value="4">4 estrellas</option>
+                                <option value="5">5 estrellas</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment_{{ product.id }}" class="form-label">Comentario</label>
+                            <textarea class="form-control" id="comment_{{ product.id }}" name="comment" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Valoración</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-center">No hay productos disponibles.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

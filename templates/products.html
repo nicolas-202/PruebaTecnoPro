@@ -1,0 +1,113 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>{% extends "base.html" %}
+{% block title %}Gestión de Productos{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">Gestión de Productos</h2>
+    <form method="POST" action="{{ url_for('products') if not edit_product else url_for('edit_product', id=edit_product.id) }}" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ edit_product.name if edit_product else '' }}" required>
+            </div>
+            <div class="col-md-4">
+                <label for="category" class="form-label">Categoría</label>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="laptops" {% if edit_product and edit_product.category == 'laptops' %}selected{% endif %}>Laptops</option>
+                    <option value="desktops" {% if edit_product and edit_product.category == 'desktops' %}selected{% endif %}>Computadoras de Escritorio</option>
+                    <option value="accessories" {% if edit_product and edit_product.category == 'accessories' %}selected{% endif %}>Accesorios</option>
+                    <option value="parts" {% if edit_product and edit_product.category == 'parts' %}selected{% endif %}>Repuestos</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" value="{{ edit_product.price if edit_product else '' }}" required>
+            </div>
+            <div class="col-md-4">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" class="form-control" id="stock" name="stock" value="{{ edit_product.stock if edit_product else '' }}" required>
+            </div>
+            <div class="col-md-8">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required>{{ edit_product.description if edit_product else '' }}</textarea>
+            </div>
+            <div class="col-12">
+                <label class="form-check-label">
+                    <input type="checkbox" name="enabled" {% if edit_product and edit_product.enabled %}checked{% endif %}> Habilitado
+                </label>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">{{ 'Actualizar' if edit_product else 'Añadir' }} Producto</button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="{{ url_for('edit_product', id=product.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form method="POST" action="{{ url_for('delete_product', id=product.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('toggle_product', id=product.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-secondary btn-sm">{{ 'Deshabilitar' if product.enabled else 'Habilitar' }}</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
