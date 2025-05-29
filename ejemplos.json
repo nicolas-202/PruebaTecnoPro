@@ -1,0 +1,364 @@
+{
+  "examples": [
+    {
+      "complexity": "O(1)",
+      "name": "is_positive",
+      "description": "Verifica si un número es positivo",
+      "code": "def is_positive(number):\n    return number > 0"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "get_dict_value",
+      "description": "Accede a un valor en un diccionario por su clave",
+      "code": "def get_dict_value(dictionary, key):\n    return dictionary[key]"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "swap_variables",
+      "description": "Intercambia los valores de dos variables",
+      "code": "def swap_variables(a, b):\n    a, b = b, a\n    return a, b"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "is_list_empty",
+      "description": "Verifica si una lista está vacía",
+      "code": "def is_list_empty(arr):\n    return len(arr) == 0"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "get_remainder",
+      "description": "Calcula el resto de una división",
+      "code": "def get_remainder(number, divisor):\n    return number % divisor"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "get_first_element",
+      "description": "Retorna el primer elemento de una lista",
+      "code": "def get_first_element(arr):\n    return arr[0]"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "assign_value",
+      "description": "Asigna un valor a una variable",
+      "code": "def assign_value(value):\n    x = value\n    return x"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "is_vowel",
+      "description": "Verifica si un carácter es una vocal",
+      "code": "def is_vowel(char):\n    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}\n    return char in vowels"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "absolute_value",
+      "description": "Calcula el valor absoluto de un número",
+      "code": "def absolute_value(number):\n    return abs(number)"
+    },
+    {
+      "complexity": "O(1)",
+      "name": "add_to_set",
+      "description": "Agrega un elemento a un conjunto",
+      "code": "def add_to_set(my_set, element):\n    my_set.add(element)\n    return my_set"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "sum_list",
+      "description": "Calcula la suma de todos los elementos en una lista",
+      "code": "def sum_list(arr):\n    total = 0\n    for num in arr:\n        total += num\n    return total"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "count_greater_than",
+      "description": "Cuenta cuántos elementos en una lista son mayores a un valor dado",
+      "code": "def count_greater_than(arr, threshold):\n    count = 0\n    for num in arr:\n        if num > threshold:\n            count += 1\n    return count"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "find_max",
+      "description": "Encuentra el máximo en una lista",
+      "code": "def find_max(arr):\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "reverse_list",
+      "description": "Invierte una lista",
+      "code": "def reverse_list(arr):\n    reversed_arr = []\n    for i in range(len(arr) - 1, -1, -1):\n        reversed_arr.append(arr[i])\n    return reversed_arr"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "count_occurrences",
+      "description": "Cuenta ocurrencias de un elemento",
+      "code": "def count_occurrences(arr, target):\n    count = 0\n    for num in arr:\n        if num == target:\n            count += 1\n    return count"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "all_positive",
+      "description": "Verifica si todos los elementos son positivos",
+      "code": "def all_positive(arr):\n    for num in arr:\n        if num <= 0:\n            return False\n    return True"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "copy_list",
+      "description": "Copia una lista",
+      "code": "def copy_list(arr):\n    new_list = []\n    for item in arr:\n        new_list.append(item)\n    return new_list"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "find_last",
+      "description": "Encuentra el último elemento igual al objetivo",
+      "code": "def find_last(arr, target):\n    last_index = -1\n    for i in range(len(arr)):\n        if arr[i] == target:\n            last_index = i\n    return last_index"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "average_list",
+      "description": "Calcula el promedio de una lista",
+      "code": "def average_list(arr):\n    total = 0\n    for num in arr:\n        total += num\n    return total / len(arr) if arr else 0"
+    },
+    {
+      "complexity": "O(n)",
+      "name": "concatenate_strings",
+      "description": "Concatena elementos de una lista de strings",
+      "code": "def concatenate_strings(arr):\n    result = \"\"\n    for s in arr:\n        result += s\n    return result"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "bubble_sort",
+      "description": "Ordena una lista usando el algoritmo de burbuja",
+      "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "has_duplicates",
+      "description": "Verifica si hay elementos duplicados en una lista",
+      "code": "def has_duplicates(arr):\n    for i in range(len(arr)):\n        for j in range(i + 1, len(arr)):\n            if arr[i] == arr[j]:\n                return True\n    return False"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "selection_sort",
+      "description": "Ordena una lista usando el algoritmo de selección",
+      "code": "def selection_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] < arr[min_idx]:\n                min_idx = j\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n    return arr"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "insertion_sort",
+      "description": "Ordena una lista usando el algoritmo de inserción",
+      "code": "def insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = key\n    return arr"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "find_pairs_with_sum",
+      "description": "Encuentra pares con suma dada",
+      "code": "def find_pairs_with_sum(arr, target_sum):\n    pairs = []\n    for i in range(len(arr)):\n        for j in range(i + 1, len(arr)):\n            if arr[i] + arr[j] == target_sum:\n                pairs.append((arr[i], arr[j]))\n    return pairs"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "multiplication_matrix",
+      "description": "Genera una matriz de multiplicación",
+      "code": "def multiplication_matrix(n):\n    matrix = [[0] * n for _ in range(n)]\n    for i in range(n):\n        for j in range(n):\n            matrix[i][j] = (i + 1) * (j + 1)\n    return matrix"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "count_common_elements",
+      "description": "Cuenta elementos comunes entre dos listas",
+      "code": "def count_common_elements(arr1, arr2):\n    count = 0\n    for x in arr1:\n        for y in arr2:\n            if x == y:\n                count += 1\n    return count"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "rotate_matrix",
+      "description": "Rota una matriz 90 grados",
+      "code": "def rotate_matrix(matrix):\n    n = len(matrix)\n    result = [[0] * n for _ in range(n)]\n    for i in range(n):\n        for j in range(n):\n            result[j][n - 1 - i] = matrix[i][j]\n    return result"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "is_symmetric",
+      "description": "Verifica si una matriz es simétrica",
+      "code": "def is_symmetric(matrix):\n    n = len(matrix)\n    for i in range(n):\n        for j in range(i + 1, n):\n            if matrix[i][j] != matrix[j][i]:\n                return False\n    return True"
+    },
+    {
+      "complexity": "O(n^2)",
+      "name": "most_frequent",
+      "description": "Encuentra el elemento más frecuente",
+      "code": "def most_frequent(arr):\n    max_count = 0\n    element = arr[0]\n    for i in range(len(arr)):\n        count = 0\n        for j in range(len(arr)):\n            if arr[j] == arr[i]:\n                count += 1\n        if count > max_count:\n            max_count = count\n            element = arr[i]\n    return element"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "binary_search",
+      "description": "Busca un elemento en una lista ordenada usando búsqueda binaria",
+      "code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "integer_square_root",
+      "description": "Encuentra la raíz cuadrada entera de un número usando búsqueda binaria",
+      "code": "def integer_square_root(n):\n    if n < 0:\n        return -1\n    left, right = 0, n\n    while left <= right:\n        mid = (left + right) // 2\n        if mid * mid == n:\n            return mid\n        elif mid * mid < n:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return right"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "fast_power",
+      "description": "Calcula base^exponent usando exponenciación rápida",
+      "code": "def fast_power(base, exponent):\n    if exponent < 0:\n        return 1 / fast_power(base, -exponent)\n    result = 1\n    while exponent > 0:\n        if exponent % 2 == 1:\n            result *= base\n        base *= base\n        exponent //= 2\n    return result"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "first_greater_or_equal",
+      "description": "Encuentra el primer elemento mayor o igual",
+      "code": "def first_greater_or_equal(arr, target):\n    left, right = 0, len(arr) - 1\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] >= target:\n            result = mid\n            right = mid - 1\n        else:\n            left = mid + 1\n    return result"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "last_less_or_equal",
+      "description": "Encuentra el último elemento menor o igual",
+      "code": "def last_less_or_equal(arr, target):\n    left, right = 0, len(arr) - 1\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] <= target:\n            result = mid\n            left = mid + 1\n        else:\n            right = mid - 1\n    return result"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "log2",
+      "description": "Calcula el logaritmo en base 2",
+      "code": "def log2(n):\n    if n <= 0:\n        return -1\n    count = 0\n    while n > 1:\n        n //= 2\n        count += 1\n    return count"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "find_peak",
+      "description": "Encuentra el pico en una lista unimodal",
+      "code": "def find_peak(arr):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if (mid == 0 or arr[mid] >= arr[mid - 1]) and (mid == len(arr) - 1 or arr[mid] >= arr[mid + 1]):\n            return mid\n        elif mid > 0 and arr[mid - 1] > arr[mid]:\n            right = mid - 1\n        else:\n            left = mid + 1\n    return -1"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "closest_element",
+      "description": "Encuentra el elemento más cercano",
+      "code": "def closest_element(arr, target):\n    left, right = 0, len(arr) - 1\n    closest = arr[0]\n    while left <= right:\n        mid = (left + right) // 2\n        if abs(arr[mid] - target) < abs(closest - target):\n            closest = arr[mid]\n        if arr[mid] == target:\n            return arr[mid]\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return closest"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "is_power_of_two",
+      "description": "Verifica si un número es potencia de 2",
+      "code": "def is_power_of_two(n):\n    if n <= 0:\n        return False\n    while n > 1:\n        if n % 2 != 0:\n            return False\n        n //= 2\n    return True"
+    },
+    {
+      "complexity": "O(log n)",
+      "name": "single_element",
+      "description": "Encuentra el elemento que aparece una vez en una lista ordenada",
+      "code": "def single_element(arr):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if mid % 2 == 1:\n            mid -= 1\n        if arr[mid] == arr[mid + 1]:\n            left = mid + 2\n        else:\n            right = mid\n    return arr[left]"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "merge_sort",
+      "description": "Ordena una lista usando el algoritmo merge sort",
+      "code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "quicksort",
+      "description": "Ordena una lista usando el algoritmo quicksort",
+      "code": "def quicksort(arr, low, high):\n    if low < high:\n        pi = partition(arr, low, high)\n        quicksort(arr, low, pi - 1)\n        quicksort(arr, pi + 1, high)\n    return arr\n\ndef partition(arr, low, high):\n    pivot = arr[high]\n    i = low - 1\n    for j in range(low, high):\n        if arr[j] <= pivot:\n            i += 1\n            arr[i], arr[j] = arr[j], arr[i]\n    arr[i + 1], arr[high] = arr[high], arr[i + 1]\n    return i + 1"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "heap_sort",
+      "description": "Ordena una lista usando el algoritmo heap sort",
+      "code": "def heap_sort(arr):\n    def heapify(arr, n, i):\n        largest = i\n        left = 2 * i + 1\n        right = 2 * i + 2\n        if left < n and arr[left] > arr[largest]:\n            largest = left\n        if right < n and arr[right] > arr[largest]:\n            largest = right\n        if largest != i:\n            arr[i], arr[largest] = arr[largest], arr[i]\n            heapify(arr, n, largest)\n    \n    n = len(arr)\n    for i in range(n // 2 - 1, -1, -1):\n        heapify(arr, n, i)\n    for i in range(n - 1, 0, -1):\n        arr[0], arr[i] = arr[i], arr[0]\n        heapify(arr, i, 0)\n    return arr"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "merge_sort_inversions",
+      "description": "Ordena una lista y cuenta inversiones",
+      "code": "def merge_sort_inversions(arr):\n    def merge_and_count(left, right):\n        result = []\n        count = 0\n        i = j = 0\n        while i < len(left) and j < len(right):\n            if left[i] <= right[j]:\n                result.append(left[i])\n                i += 1\n            else:\n                result.append(right[j])\n                count += len(left) - i\n                j += 1\n        result.extend(left[i:])\n        result.extend(right[j:])\n        return result, count\n    \n    if len(arr) <= 1:\n        return arr, 0\n    mid = len(arr) // 2\n    left, left_count = merge_sort_inversions(arr[:mid])\n    right, right_count = merge_sort_inversions(arr[mid:])\n    merged, merge_count = merge_and_count(left, right)\n    return merged, left_count + right_count + merge_count"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "quick_select_k_smallest",
+      "description": "Encuentra los k elementos más pequeños",
+      "code": "def quick_select_k_smallest(arr, k):\n    def quick_select(arr, low, high, k):\n        if low == high:\n            return arr[low]\n        pivot_idx = partition(arr, low, high)\n        if k == pivot_idx:\n            return arr[k]\n        elif k < pivot_idx:\n            return quick_select(arr, low, pivot_idx - 1, k)\n        else:\n            return quick_select(arr, pivot_idx + 1, high, k)\n    \n    return quick_select(arr, 0, len(arr) - 1, k - 1)\n\ndef partition(arr, low, high):\n    pivot = arr[high]\n    i = low - 1\n    for j in range(low, high):\n        if arr[j] <= pivot:\n            i += 1\n            arr[i], arr[j] = arr[j], arr[i]\n    arr[i + 1], arr[high] = arr[high], arr[i + 1]\n    return i + 1"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "sort_nearly_sorted",
+      "description": "Ordena una lista casi ordenada (k-sorted)",
+      "code": "def sort_nearly_sorted(arr, k):\n    from heapq import heappush, heappop\n    heap = []\n    result = []\n    for i in range(len(arr)):\n        heappush(heap, arr[i])\n        if len(heap) > k:\n            result.append(heappop(heap))\n    while heap:\n        result.append(heappop(heap))\n    return result"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "sort_by_frequency",
+      "description": "Ordena por frecuencia",
+      "code": "def sort_by_frequency(arr):\n    from collections import Counter\n    freq = Counter(arr)\n    return sorted(arr, key=lambda x: (-freq[x], x))"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "find_kth_largest",
+      "description": "Encuentra el elemento k-ésimo más grande",
+      "code": "def find_kth_largest(arr, k):\n    def quick_select(arr, low, high, k):\n        if low == high:\n            return arr[low]\n        pivot_idx = partition(arr, low, high)\n        if k == pivot_idx:\n            return arr[k]\n        elif k < pivot_idx:\n            return quick_select(arr, low, pivot_idx - 1, k)\n        else:\n            return quick_select(arr, pivot_idx + 1, high, k)\n    \n    return quick_select(arr, 0, len(arr) - 1, len(arr) - k)\n\ndef partition(arr, low, high):\n    pivot = arr[high]\n    i = low - 1\n    for j in range(low, high):\n        if arr[j] <= pivot:\n            i += 1\n            arr[i], arr[j] = arr[j], arr[i]\n    arr[i + 1], arr[high] = arr[high], arr[i + 1]\n    return i + 1"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "sort_strings_by_length",
+      "description": "Ordena una lista de strings por longitud",
+      "code": "def sort_strings_by_length(arr):\n    return sorted(arr, key=len)"
+    },
+    {
+      "complexity": "O(n log n)",
+      "name": "merge_sort_linked_list",
+      "description": "Ordena una lista (simula lista enlazada) usando merge sort",
+      "code": "def merge_sort_linked_list(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort_linked_list(arr[:mid])\n    right = merge_sort_linked_list(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "fibonacci",
+      "description": "Calcula el n-ésimo número de Fibonacci usando recursión",
+      "code": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "generate_combinations",
+      "description": "Genera todas las combinaciones posibles de una lista",
+      "code": "def generate_combinations(arr):\n    def backtrack(start, curr):\n        result.append(curr[:])\n        for i in range(start, len(arr)):\n            curr.append(arr[i])\n            backtrack(i + 1, curr)\n            curr.pop()\n    result = []\n    backtrack(0, [])\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "hanoi",
+      "description": "Resuelve el problema de las torres de Hanoi",
+      "code": "def hanoi(n, source, auxiliary, target):\n    moves = []\n    if n > 0:\n        hanoi(n - 1, source, target, auxiliary)\n        moves.append(f\"Mover disco {n} de {source} a {target}\")\n        hanoi(n - 1, auxiliary, source, target)\n    return moves"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "generate_permutations",
+      "description": "Genera todas las permutaciones",
+      "code": "def generate_permutations(arr):\n    def backtrack(curr, remaining):\n        if not remaining:\n            result.append(curr[:])\n        for i in range(len(remaining)):\n            curr.append(remaining[i])\n            backtrack(curr, remaining[:i] + remaining[i + 1:])\n            curr.pop()\n    result = []\n    backtrack([], arr)\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "subset_sum",
+      "description": "Resuelve el problema del subconjunto con suma dada",
+      "code": "def subset_sum(arr, target):\n    def backtrack(index, curr_sum, curr_subset):\n        if curr_sum == target:\n            result.append(curr_subset[:])\n            return\n        if curr_sum > target or index >= len(arr):\n            return\n        backtrack(index + 1, curr_sum + arr[index], curr_subset + [arr[index]])\n        backtrack(index + 1, curr_sum, curr_subset)\n    result = []\n    backtrack(0, 0, [])\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "all_substrings",
+      "description": "Genera todas las subcadenas",
+      "code": "def all_substrings(s):\n    result = []\n    def backtrack(start, curr):\n        result.append(curr)\n        for i in range(start, len(s)):\n            backtrack(i + 1, curr + s[i])\n    backtrack(0, \"\")\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "knapsack",
+      "description": "Resuelve el problema de la mochila 0/1",
+      "code": "def knapsack(values, weights, capacity):\n    def backtrack(index, curr_weight, curr_value):\n        if curr_weight <= capacity:\n            result.append((curr_value, curr_weight))\n        if index >= len(values) or curr_weight > capacity:\n            return\n        backtrack(index + 1, curr_weight + weights[index], curr_value + values[index])\n        backtrack(index + 1, curr_weight, curr_value)\n    result = []\n    backtrack(0, 0, 0)\n    return max(result, key=lambda x: x[0])[0] if result else 0"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "partitions",
+      "description": "Genera todas las particiones de un número",
+      "code": "def partitions(n):\n    def backtrack(remaining, curr_partition, max_val):\n        if remaining == 0:\n            result.append(curr_partition[:])\n            return\n        for i in range(1, min(remaining, max_val) + 1):\n            backtrack(remaining - i, curr_partition + [i], i)\n    result = []\n    backtrack(n, [], n)\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "n_queens",
+      "description": "Resuelve el problema de las N reinas (simplificado para soluciones)",
+      "code": "def n_queens(n):\n    def backtrack(row, queens):\n        if row == n:\n            result.append(queens[:])\n            return\n        for col in range(n):\n            if all(abs(col - c) != row - r and col != c for r, c in enumerate(queens)):\n                queens.append(col)\n                backtrack(row + 1, queens)\n                queens.pop()\n    result = []\n    backtrack(0, [])\n    return result"
+    },
+    {
+      "complexity": "O(2^n)",
+      "name": "generate_binary_combinations",
+      "description": "Genera todas las combinaciones binarias",
+      "code": "def generate_binary_combinations(n):\n    def backtrack(curr, length):\n        if len(curr) == length:\n            result.append(curr[:])\n            return\n        backtrack(curr + [0], length)\n        backtrack(curr + [1], length)\n    result = []\n    backtrack([], n)\n    return result"
+    }
+  ]
+}
